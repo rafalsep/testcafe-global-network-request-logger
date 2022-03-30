@@ -24,8 +24,7 @@ jest.mock('testcafe', () => ({
   },
 }));
 
-jest.useFakeTimers('modern');
-jest.setSystemTime(new Date(2023, 3, 1));
+jest.useFakeTimers('modern').setSystemTime(new Date(Date.UTC(2023, 3, 5, 10)).getTime());
 
 it('Should attach request logger during on request invocation', async () => {
   const t = { addRequestHooks: jest.fn() };
@@ -60,11 +59,11 @@ it('Should log up to 4 requests (2 gzipped, 1 with json body, 1 with no body), s
   await onResponse(t);
 
   expect(t.removeRequestHooks).toHaveBeenCalledTimes(1);
-  const expectedDirname = 'tmp/2023-03-31/fixtureName/network';
+  const expectedDirname = 'tmp/2023-04-05/fixtureName/network';
   expect(fs.existsSync).toHaveBeenCalledWith(expectedDirname);
   expect(fs.mkdirSync).toHaveBeenCalledWith(expectedDirname, { recursive: true });
   expect(fs.writeFileSync).toHaveBeenCalledWith(
-    `${expectedDirname}/testName_22-00-00_2.json`,
+    `${expectedDirname}/testName_10-00-00_2.json`,
     '[{"request":{"url":"http://some-url.com/v1/normal"},"response":{"body":{"mockResponse":"jsonContent1"}}},' +
       '{"request":{"url":"http://some-url.com/v1/normal"},"response":{"body":{"mockResponse":"jsonContent2"}}},' +
       '{"request":{"url":"http://some-url.com/v1/nobody"},"response":{}},' +
