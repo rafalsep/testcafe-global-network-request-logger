@@ -5,8 +5,7 @@ Uses TestCafe [global hooks](https://testcafe.io/documentation/403435/guides/adv
 It is meant to be used in CI, together with screenshot & video recording for better troubleshooting capability of failed tests
 
 <p align="center">
-    <img src="https://raw.github.com/rafalsep/testcafe-global-network-request-logger/master/media/preview.png" alt="structure" />
-    <img src="https://raw.github.com/rafalsep/testcafe-global-network-request-logger/master/media/preview.png" alt="content" />
+    <img src="https://raw.github.com/rafalsep/testcafe-global-network-request-logger/master/media/content.png" alt="content" />
 </p>
 
 ## Features
@@ -42,12 +41,12 @@ module.exports = {
 };
 ```
 
-| Required | Argument               | Description                                                                                                                                                                                                                                            | Example                                                                 |
-| -------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------- |
-| Yes      | network.path           | The base directory where screenshots are saved                                                                                                                                                                                                         | tmp                                                                     |
-| Yes      | network.takeOnFails    | `true` to take a screenshot whenever a test fails.                                                                                                                                                                                                     | true                                                                    |
-| Yes      | network.pathPattern    | A pattern that defines how TestCafe composes the relative path to a screenshot file. See [Screenshot and Video Directories](https://testcafe.io/documentation/402840/guides/advanced-guides/screenshots-and-videos#screenshot-and-video-directories).  | ${DATE}/${FIXTURE}/network/${TEST}_${TIME}_${QUARANTINE_ATTEMPT}.json   |
-| Yes      | network.requestLimit   | defines number of requests that should be logged, `0` means all                                                                                                                                                                                        | 3                                                                       |
+| Required | Argument               | Description                                                                                                                                                                                                                                            | Example                |
+| -------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------- |
+| Yes      | network.path           | The base directory where screenshots are saved                                                                                                                                                                                                         | tmp                    |
+| Yes      | network.takeOnFails    | `true` to take a screenshot whenever a test fails.                                                                                                                                                                                                     | true                   |
+| Yes      | network.pathPattern    | A pattern that defines how TestCafe composes the relative path to a screenshot file. See [Screenshot and Video Directories](https://testcafe.io/documentation/402840/guides/advanced-guides/screenshots-and-videos#screenshot-and-video-directories).  | ${DATE}/${TEST}.json   |
+| Yes      | network.requestLimit   | defines number of requests that should be logged, `0` means all                                                                                                                                                                                        | 3                      |
 
 ## Enable request logging
 Once configured last step is to attach hook in `.testcaferc.js` file
