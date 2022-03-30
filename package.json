@@ -1,0 +1,71 @@
+{
+  "name": "testcafe-global-network-request-logger",
+  "version": "0.1.0",
+  "description": "Global hook for testcafe that will intercept, record and save network request/response communication to a JSON file",
+  "repository": "https://github.com/rafalsep/testcafe-global-network-request-logger",
+  "author": {
+    "name": "Rafal Szczepankiewicz"
+  },
+  "main": "src/index",
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "prettier": "prettier --write '{src,test}/**/*.js'",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:update": "jest -u",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint {src,test}/**/*.js",
+    "lint:fix": "eslint {src,test}/**/*.js --fix"
+  },
+  "keywords": [
+    "testcafe",
+    "hooks",
+    "global",
+    "network",
+    "interceptor",
+    "request",
+    "log",
+    "record"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "babel-eslint": "10.0.1",
+    "eslint": "8.12.0",
+    "eslint-config-airbnb-base": "15.0.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-import": "2.25.4",
+    "eslint-plugin-prettier": "4.0.0",
+    "jest": "27.5.1",
+    "prettier": "2.6.1",
+    "testcafe": "1.x"
+  },
+  "peerDependencies": {
+    "testcafe": "1.x"
+  },
+  "jest": {
+    "roots": [
+      "src",
+      "test"
+    ],
+    "snapshotFormat": {
+      "printBasicPrototype": false
+    },
+    "collectCoverageFrom": [
+      "src/*.js",
+      "!node_modules/**",
+      "!test/**"
+    ],
+    "coverageReporters": [
+      "lcov",
+      [
+        "html",
+        {
+          "skipEmpty": true
+        }
+      ],
+      "text-summary"
+    ]
+  }
+}

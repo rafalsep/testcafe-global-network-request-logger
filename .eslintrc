@@ -1,0 +1,14 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["airbnb-base", "prettier"],
+  "plugins": ["prettier"],
+  "rules": {
+    "no-plusplus": 0,
+    "no-await-in-loop": 0,
+    "no-template-curly-in-string": 0
+  },
+  "env": {
+    "node": true,
+    "jest": true
+  }
+}
