@@ -60,7 +60,7 @@ const onResponse = async t => {
         .replaceAll('${TIME}', now.substr(11, 8).replaceAll(':', '-'))
         .replaceAll('${FIXTURE}', t.testRun.test.fixture.name)
         .replaceAll('${TEST}', t.testRun.test.name)
-        .replaceAll('${QUARANTINE_ATTEMPT}', (t.testRun.quarantine?.attempts?.length ?? 0) + 1),
+        .replaceAll('${QUARANTINE_ATTEMPT}', (t.testRun.quarantine ? t.testRun.quarantine.attempts.length : 0) + 1),
     );
 
     if (!fs.existsSync(path.dirname(networkPath))) {
