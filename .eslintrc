@@ -1,11 +1,12 @@
 {
   "parser": "babel-eslint",
-  "extends": ["airbnb-base", "prettier"],
-  "plugins": ["prettier"],
+  "extends": ["airbnb-base", "plugin:testcafe-community/recommended", "prettier"],
+  "plugins": ["prettier", "testcafe-community"],
   "rules": {
     "no-plusplus": 0,
     "no-await-in-loop": 0,
-    "no-template-curly-in-string": 0
+    "no-template-curly-in-string": 0,
+    "no-unused-expressions": 0
   },
   "env": {
     "node": true,

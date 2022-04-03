@@ -1,4 +1,5 @@
 # Global Hook for testcafe that records and saves JSON request/response
+
 [![Build Status](https://travis-ci.org/rafalsep/testcafe-global-network-request-logger.svg)](https://travis-ci.org/rafalsep/testcafe-global-network-request-logger)
 
 Uses TestCafe [global hooks](https://testcafe.io/documentation/403435/guides/advanced-guides/hooks#global-hooks) to record network calls executed in browser and saves them into file using same format as screenshots/videos.
@@ -9,6 +10,7 @@ It is meant to be used in CI, together with screenshot & video recording for bet
 </p>
 
 ## Features
+
 - supports gzipped or JSON responses
 - once attached will execute for all tests
 - uses similar config as screenshot and video for path and recording customization
@@ -16,17 +18,21 @@ It is meant to be used in CI, together with screenshot & video recording for bet
 - supports quarantine mode and parallel test execution
 
 ### Note
+
 Only intercepts cross domain requests to avoid recording locally requested resource files like HTML, CSS, JS or JSON.
 
 ## Prerequisite
+
 In order to use global hooks, [TestCafe Javascript configuration file](https://testcafe.io/documentation/402638/reference/configuration-file#javascript) must be used.
 
 ## Install
+
 ```
 npm install testcafe-global-network-request-logger
 ```
 
 ## Configuration
+
 Once installed add `network` configuration in `.testcaferc.js` file
 
 ```js
@@ -37,22 +43,23 @@ module.exports = {
     takeOnFails: true,
     pathPattern: '${DATE}/${FIXTURE}/network/${TEST}_${TIME}_${QUARANTINE_ATTEMPT}.json',
     requestLimit: 0,
-  }
+  },
 };
 ```
 
-| Required | Argument               | Description                                                                                                                                                                                                                                            | Example                |
-| -------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------- |
-| Yes      | network.path           | The base directory where screenshots are saved                                                                                                                                                                                                         | tmp                    |
-| Yes      | network.takeOnFails    | `true` to take a screenshot whenever a test fails.                                                                                                                                                                                                     | true                   |
-| Yes      | network.pathPattern    | A pattern that defines how TestCafe composes the relative path to a screenshot file. See [Screenshot and Video Directories](https://testcafe.io/documentation/402840/guides/advanced-guides/screenshots-and-videos#screenshot-and-video-directories).  | ${DATE}/${TEST}.json   |
-| Yes      | network.requestLimit   | defines number of requests that should be logged, `0` means all                                                                                                                                                                                        | 3                      |
+| Required | Argument             | Description                                                                                                                                                                                                                                           | Example              |
+| -------- | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------- |
+| Yes      | network.path         | The base directory where screenshots are saved                                                                                                                                                                                                        | tmp                  |
+| Yes      | network.takeOnFails  | `true` to take a screenshot whenever a test fails.                                                                                                                                                                                                    | true                 |
+| Yes      | network.pathPattern  | A pattern that defines how TestCafe composes the relative path to a screenshot file. See [Screenshot and Video Directories](https://testcafe.io/documentation/402840/guides/advanced-guides/screenshots-and-videos#screenshot-and-video-directories). | ${DATE}/${TEST}.json |
+| Yes      | network.requestLimit | defines number of requests that should be logged, `0` means all                                                                                                                                                                                       | 3                    |
 
 ## Enable request logging
-Once configured last step is to attach hook in `.testcaferc.js` file
+
+Once configured last step is to attach hook in `.testcaferc.js` file and define filter (if none is specified will record only JSON cals)
 
 ```js
-const { onRequest, onResponse } = require('testcafe-global-network-request-logger');
+const networkRequestLogger = require('testcafe-global-network-request-logger')(/* FILTER */);
 
 module.exports = {
   // some other config
@@ -62,15 +69,24 @@ module.exports = {
   hooks: {
     test: {
       before: async t => {
-        await onRequest(t);
+        await networkRequestLogger.onBeforeHook(t);
       },
       after: async t => {
-        await onResponse(t);
+        await networkRequestLogger.onAfterHook(t);
       },
     },
   },
 };
 ```
 
+### FILTER
+
+Leave undefined for default or define custom filter as described in [testcafe docs](https://testcafe.io/documentation/402769/reference/test-api/requestlogger/constructor#select-requests-to-be-handled-by-the-hook)
+
+## Examples
+
+See working examples in examples folder
+
 ## Author
+
 Rafal Szczepankiewicz

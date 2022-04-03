@@ -16,6 +16,8 @@
     "test:watch": "jest --watch",
     "test:update": "jest -u",
     "test:coverage": "jest --coverage",
+    "test:default": "testcafe --config-file examples/default/.testcaferc.js chrome examples/default/index.js",
+    "test:custom-filter": "testcafe --config-file examples/custom-filter/.testcaferc.js chrome examples/custom-filter/index.js",
     "lint": "eslint {src,test}/**/*.js",
     "lint:fix": "eslint {src,test}/**/*.js --fix"
   },
@@ -37,6 +39,7 @@
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-import": "2.25.4",
     "eslint-plugin-prettier": "4.0.0",
+    "eslint-plugin-testcafe-community": "2.0.0",
     "jest": "27.5.1",
     "prettier": "2.6.1",
     "testcafe": "1.x"
