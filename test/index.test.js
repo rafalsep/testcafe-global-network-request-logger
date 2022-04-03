@@ -1,5 +1,6 @@
 const mockZlib = require('zlib');
 const fs = require('fs');
+const path = require('path');
 const networkRequestLogger = require('../src/index')();
 
 jest.mock('fs', () => ({
@@ -65,11 +66,11 @@ it('Should log up to 4 requests (2 gzipped, 1 with json body, 1 with no body), s
   await networkRequestLogger.onAfterHook(t);
 
   expect(t.removeRequestHooks).toHaveBeenCalledTimes(1);
-  const expectedDirname = 'tmp/2023-04-05/fixtureName/network';
+  const expectedDirname = path.join('tmp', '2023-04-05', 'fixtureName', 'network');
   expect(fs.existsSync).toHaveBeenCalledWith(expectedDirname);
   expect(fs.mkdirSync).toHaveBeenCalledWith(expectedDirname, { recursive: true });
   expect(fs.writeFileSync).toHaveBeenCalledWith(
-    `${expectedDirname}/testName_10-00-00_2.json`,
+    path.join(expectedDirname, 'testName_10-00-00_2.json'),
     '[{"request":{"url":"http://some-url.com/v1/normal"},"response":{"body":{"mockResponse":"jsonContent1"},"headers":{"content-type":"application/json"}}},' +
       '{"request":{"url":"http://some-url.com/v1/normal"},"response":{"body":{"mockResponse":"jsonContent2"},"headers":{}}},' +
       '{"request":{"url":"http://some-url.com/v1/nobody"},"response":{"headers":{}}},' +
