@@ -16,7 +16,7 @@
     "test:watch": "jest --watch",
     "test:update": "jest -u",
     "test:coverage": "jest --coverage",
-    "test:default": "testcafe --config-file examples/default/.testcaferc.js chrome:headless examples/default/index.js",
+    "test:default": "testcafe --config-file examples/default/.testcaferc.js chrome examples/default/index.js",
     "test:custom-filter": "testcafe --config-file examples/custom-filter/.testcaferc.js chrome examples/custom-filter/index.js",
     "lint": "eslint {src,test}/**/*.js",
     "lint:fix": "eslint {src,test}/**/*.js --fix"
