@@ -1,6 +1,6 @@
 {
   "name": "testcafe-global-network-request-logger",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Global hook for testcafe that will intercept, record and save network request/response communication to a JSON file",
   "repository": "https://github.com/rafalsep/testcafe-global-network-request-logger",
   "author": {
