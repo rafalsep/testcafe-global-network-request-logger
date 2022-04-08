@@ -1,4 +1,6 @@
-# Global Hook for testcafe that records and saves JSON request/response
+# Global Network Request Logger for Testcafe
+
+###### Global Hook for testcafe that will record and save network communication (request/response) with external services to JSON file
 
 [![Build Status](https://travis-ci.org/rafalsep/testcafe-global-network-request-logger.svg)](https://travis-ci.org/rafalsep/testcafe-global-network-request-logger)
 
@@ -11,15 +13,16 @@ It is meant to be used in CI, together with screenshot & video recording for bet
 
 ## Features
 
+- zero dependencies
 - supports gzipped or JSON responses
 - once attached will execute for all tests
-- uses similar config as screenshot and video for path and recording customization
+- uses similar config as [testcafe screenshot and video](https://testcafe.io/documentation/402840/guides/advanced-guides/screenshots-and-videos#screenshot-and-video-directories) for path and recording customization
 - adds additional param that can be used to limit number of logged requests (usually only last few requests matter)
 - supports quarantine mode and parallel test execution
 
 ### Note
 
-Only intercepts cross domain requests to avoid recording locally requested resource files like HTML, CSS, JS or JSON.
+Only intercepts cross domain requests to avoid recording locally requested resources like HTML, CSS or JS.
 
 ## Prerequisite
 
@@ -56,7 +59,7 @@ module.exports = {
 
 ## Enable request logging
 
-Once configured last step is to attach hook in `.testcaferc.js` file and define filter (if none is specified will record only JSON cals)
+Once configured last step is to attach hook in `.testcaferc.js` file
 
 ```js
 const networkRequestLogger = require('testcafe-global-network-request-logger')(/* FILTER */);
@@ -81,7 +84,7 @@ module.exports = {
 
 ### FILTER
 
-Leave undefined for default or define custom filter as described in [testcafe docs](https://testcafe.io/documentation/402769/reference/test-api/requestlogger/constructor#select-requests-to-be-handled-by-the-hook)
+Leave undefined for default (records all HTTP non OPTION, JSON requests) or define custom filter as described in [testcafe docs](https://testcafe.io/documentation/402769/reference/test-api/requestlogger/constructor#select-requests-to-be-handled-by-the-hook)
 
 ## Examples
 

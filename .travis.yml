@@ -13,6 +13,3 @@ cache: npm
 script:
   - npm run lint
   - npm run test
-
-addons:
-  chrome: stable
