@@ -1,6 +1,6 @@
 {
   "name": "testcafe-global-network-request-logger",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Global hook for testcafe that will intercept, record and save network request/response communication to a JSON file",
   "repository": "https://github.com/rafalsep/testcafe-global-network-request-logger",
   "author": {
@@ -34,18 +34,18 @@
   "license": "MIT",
   "devDependencies": {
     "babel-eslint": "10.0.1",
-    "eslint": "8.17.0",
+    "eslint": "8.23.1",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-import": "2.26.0",
-    "eslint-plugin-prettier": "4.0.0",
+    "eslint-plugin-prettier": "4.2.1",
     "eslint-plugin-testcafe-community": "2.0.0",
-    "jest": "28.1.1",
-    "prettier": "2.7.0",
-    "testcafe": "1.x"
+    "jest": "29.0.3",
+    "prettier": "2.7.1",
+    "testcafe": "2.x"
   },
   "peerDependencies": {
-    "testcafe": "1.x"
+    "testcafe": "1.x || 2.x"
   },
   "jest": {
     "roots": [
